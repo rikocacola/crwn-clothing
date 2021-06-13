@@ -6,6 +6,8 @@ import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
+import { Redirect } from 'react-router-dom'
+
 class SignIn extends React.Component {
     constructor() {
         super();
@@ -23,7 +25,7 @@ class SignIn extends React.Component {
 
         try {
             await auth.signInWithEmailAndPassword(email, password);
-            this.setState({ email: '', password: '' });
+            this.setState({ email: '', password: '', redirectTo: true });
         } catch (error) {
             alert(error.message)
         }
